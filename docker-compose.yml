@@ -1,0 +1,52 @@
+version: '3.8'
+
+services:
+  # Servicio PHP
+  php:
+    image: php:8.1-cli
+    container_name: php_app
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+    environment:
+      - COMPOSER_ALLOW_SUPERUSER=1
+    command: bash -c "curl -sS https://getcomposer.org/installer | php && php -S 0.0.0.0:8080 -t public"
+    depends_on:
+      - mysql
+    networks:
+      - app_network
+  
+  # Servicio MySQL
+  mysql:
+    image: mysql:8.0
+    container_name: mysql_db
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: my_database
+      MYSQL_USER: mysql
+      MYSQL_PASSWORD: userpassword
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app_network
+  
+  # Servicio de adminer (para administrar la base de datos MySQL desde un navegador)
+  adminer:
+    image: adminer
+    container_name: adminer
+    ports:
+      - "8081:8080"
+    networks:
+      - app_network
+
+networks:
+  app_network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local
