@@ -1,7 +1,6 @@
 <?php
 
-// src/Domain/User/User.php
-// src/Domain/User/User.php
+
 namespace App\Domain\User;
 
 class User
@@ -16,7 +15,7 @@ class User
         $this->id = $id;
         $this->name = $name;
         $this->email = $email;
-        $this->password = $password->hash(); // Suponiendo que Password tenga el método 'hash'
+        $this->password = $password->hash(); 
     }
 
     public function getId(): UserId

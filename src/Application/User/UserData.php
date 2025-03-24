@@ -1,13 +1,12 @@
 <?php
-// src/Domain/User/UserData.php
 
-namespace App\Domain\User;
+namespace App\Application\User;
 
 class UserData
 {
-    private $name;
-    private $email;
-    private $password;
+    private string $name;
+    private string $email;
+    private string $password;
 
     public function __construct(string $name, string $email, string $password)
     {

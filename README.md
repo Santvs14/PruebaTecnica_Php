@@ -11,5 +11,8 @@ Tests PHPUnit:
      php vendor/bin/phpunit tests //Todas las pruebas
      //Ejecuta la prueba  UserTest
 
+docker ps // Ver los servicos del contenedor activos
+
+
 
 
